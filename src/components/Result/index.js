@@ -1,7 +1,6 @@
 import React from 'react'
 import _ from 'lodash'
 
-import {getVirkrVirksomhed} from '../../API'
 import Virksomheder from './Virksomheder'
 import VirksomhedsDetaljer from './Virksomheder/Detaljer'
 import Personer from './Personer'
@@ -9,21 +8,10 @@ import Personer from './Personer'
 export default class Result extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      detaljer: {
-        virksomhed: {}
-      }
-    }
-  }
-
-  vaelgCvrNr = (cvrnr) => {
-    getVirkrVirksomhed(cvrnr)
-    .then(resultat => this.setState({detaljer: {virksomhed: resultat}}))
   }
 
   render() {
-    const {resultat} = this.props
-    const {virksomhed} = this.state.detaljer
+    const {resultat, virksomhed, vaelgCvrNr} = this.props
 
     if (!_.isEmpty(virksomhed)) {
       return (
@@ -55,7 +43,7 @@ export default class Result extends React.Component {
         </div>
         <div className='row'>
           <div className='col-md-12'>
-            <Virksomheder data={virksomheder} vaelgCvrNr={this.vaelgCvrNr}/>
+            <Virksomheder data={virksomheder} vaelgCvrNr={vaelgCvrNr}/>
           </div>
         </div>
       </div>
