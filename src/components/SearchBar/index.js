@@ -1,24 +1,29 @@
 import React from 'react'
+import { connect } from 'react-redux';
+import { search } from '../../actions'
 
-export default class SearchBar extends React.Component {
+class SearchBar extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      term: ''
+      term: props.search.term
     }
-
-    this.update = this.update.bind(this)
-    this.formSubmit = this.formSubmit.bind(this)
   }
 
-  formSubmit(event) {
+  // Update internal state when 'search.term' prop is updated by 'RESET' action
+  componentWillReceiveProps(newProps) {
+    if (this.state.term !== newProps.search.term) {
+      this.setState({ term: newProps.search.term })
+    }
+  }
+
+  formSubmit = (event) => {
     event.preventDefault()
-    // send result upstream
-    this.props.submit(this.state.term)
+    this.props.dispatchSearch(this.state.term)
   }
 
-  update(event) {
-    this.setState({term: event.target.value})
+  update = (event) => {
+    this.setState({ term: event.target.value })
   }
 
   render() {
@@ -27,9 +32,9 @@ export default class SearchBar extends React.Component {
         <div className="col-md-12">
           <form onSubmit={this.formSubmit}>
             <div className="input-group">
-              <input type='text' className='form-control' placeholder='Personnavn, virksomhedsnavn eller CVR nummer' value={this.state.cvrnr} onChange={this.update}/>
+              <input type='text' className='form-control' placeholder='Personnavn, virksomhedsnavn eller CVR nummer' value={this.state.term} onChange={this.update} />
               <span className="input-group-btn">
-                <input className='btn btn-primary' type='submit' value='Søg'/>
+                <input className='btn btn-primary' type='submit' value='Søg' />
               </span>
             </div>
           </form>
@@ -37,5 +42,21 @@ export default class SearchBar extends React.Component {
       </div>
     )
   }
-
 }
+
+const mapStateToProps = (state) => {
+  return {
+    search: state.search,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    dispatchSearch: (term) => dispatch(search(term))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar)
+
+
+

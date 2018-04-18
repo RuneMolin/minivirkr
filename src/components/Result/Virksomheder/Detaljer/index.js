@@ -14,6 +14,7 @@ const VirksomhedsDetaljer = ({virksomhed}) => {
   )
 }
 
+// Example of using PropTypes to define the props a component expects
 VirksomhedsDetaljer.propTypes = {
   virksomhed: PropTypes.object.isRequired
 }

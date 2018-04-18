@@ -1,6 +1,5 @@
 import React from 'react'
 import _ from 'lodash'
-import PropTypes from 'prop-types';
 
 export default class Virksomheder extends React.Component {
   constructor(props) {
@@ -8,7 +7,7 @@ export default class Virksomheder extends React.Component {
   }
 
   onClick = (cvrnr) => {
-    this.props.vaelgCvrNr(cvrnr)
+    this.props.onSelectCompany(cvrnr)
   }
 
   render() {
@@ -44,16 +43,4 @@ export default class Virksomheder extends React.Component {
       </table>
     </div>)
   }
-}
-
-Virksomheder.propTypes = {
-  data: PropTypes.arrayOf(
-    PropTypes.shape(
-      {
-        cvrnr: PropTypes.string.isrRequired,
-        navn: PropTypes.string, adresseTekst:
-        PropTypes.string
-      }
-    )).isRequired,
-  vaelgCvrNr: PropTypes.func.isRequired
 }
