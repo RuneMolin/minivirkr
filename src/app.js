@@ -1,11 +1,11 @@
 import React from 'react'
 
+import Search from './components/Search'
+import Virksomhed from './components/Virksomhed'
 import Header from './components/Header'
-import SearchBar from './components/SearchBar'
-import Result from './components/Result'
-import Error from './components/Error'
 
-import {searchVirkr} from './API'
+import { HashRouter as Router, Route, Link } from "react-router-dom";
+
 
 /**
  * The main application component
@@ -13,30 +13,19 @@ import {searchVirkr} from './API'
 export default class MiniVirkr extends React.Component {
   constructor(props) {
     super(props)
-
-    this.state = {
-      resultat: {},
-      fejl: {}
-    }
-  }
-
-  searchCvr = (term) => {
-    searchVirkr(term)
-    .then(resultat => this.setState({resultat: resultat, fejl: {}}))
-    .catch(err => this.setState({resultat: {}, fejl: err}))
   }
 
   render() {
     return (
       <div>
         <Header />
-        <div className='container'>
-          <SearchBar submit={this.searchCvr}/>
-          <Result resultat={this.state.resultat}/>
-          <Error error={this.state.fejl}/>
-        </div>
+        <Router>
+          <div className='container'>
+            <Route exact path="/" component={Search} />
+            <Route path="/virksomhed/:cvrnr" component={Virksomhed} />
+          </div>
+        </Router>
       </div>
     )
   }
-
 }

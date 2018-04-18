@@ -1,6 +1,7 @@
 import React from 'react'
 import _ from 'lodash'
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
 export default class Virksomheder extends React.Component {
   constructor(props) {
@@ -19,9 +20,11 @@ export default class Virksomheder extends React.Component {
     }
 
     const rows = data.map((virksomhed) => {
+      const link=`/virksomhed/${virksomhed.cvrnr}`;
+
       return (<tr key={virksomhed.cvrnr}>
         <td>
-          <a href='#' onClick={() => this.onClick(virksomhed.cvrnr)}>{virksomhed.cvrnr}</a>
+          <Link to={link}>{virksomhed.cvrnr}</Link>
         </td>
         <td>{virksomhed.navn}</td>
         <td>{virksomhed.adresseTekst}</td>
