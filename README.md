@@ -4,7 +4,7 @@ A miniature version of Virkr (www.virkr.dk) build for demonstration purposes
 
 ## Highlights
 * React
-* Simple state management
+* State management with Redux
 * Twitter Bootstrap (Bootswatch _Superhero_ theme)
 * Webpack 4
 * Babel
