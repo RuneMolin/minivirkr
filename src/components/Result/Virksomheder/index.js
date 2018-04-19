@@ -8,10 +8,6 @@ export default class Virksomheder extends React.Component {
     super(props)
   }
 
-  onClick = (cvrnr) => {
-    this.props.vaelgCvrNr(cvrnr)
-  }
-
   render() {
     const {data} = this.props
 
@@ -57,6 +53,5 @@ Virksomheder.propTypes = {
         navn: PropTypes.string, adresseTekst:
         PropTypes.string
       }
-    )).isRequired,
-  vaelgCvrNr: PropTypes.func.isRequired
+    )).isRequired
 }
