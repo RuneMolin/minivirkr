@@ -30,19 +30,19 @@ const Result = ({ search, company, person, retrieveCompany, retrievePerson }) =>
   }
 
   // Show list of persons and list of companies
-  const { virksomheder, deltagere } = search.result
+  const { virksomhedSoegeresultat, deltagerSoegeresultat } = search.result
 
   return (
     <div>
       <br />
       <div className='row'>
         <div className='col-md-12'>
-          <Personer data={deltagere} onSelectPerson={retrievePerson} />
+          <Personer data={deltagerSoegeresultat.deltagere} onSelectPerson={retrievePerson} />
         </div>
       </div>
       <div className='row'>
         <div className='col-md-12'>
-          <Virksomheder data={virksomheder} onSelectCompany={retrieveCompany} />
+          <Virksomheder data={virksomhedSoegeresultat.virksomheder} onSelectCompany={retrieveCompany} />
         </div>
       </div>
     </div>
