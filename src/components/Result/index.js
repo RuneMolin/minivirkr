@@ -31,19 +31,19 @@ export default class Result extends React.Component {
       return null
     }
 
-    const {virksomheder, deltagere} = resultat
+    const {virksomhedSoegeresultat, deltagerSoegeresultat} = resultat
 
     return (
       <div>
         <br/>
         <div className='row'>
           <div className='col-md-12'>
-            <Personer data={deltagere}/>
+            <Personer data={deltagerSoegeresultat.deltagere}/>
           </div>
         </div>
         <div className='row'>
           <div className='col-md-12'>
-            <Virksomheder data={virksomheder} vaelgCvrNr={vaelgCvrNr}/>
+            <Virksomheder data={virksomhedSoegeresultat.virksomheder} vaelgCvrNr={vaelgCvrNr}/>
           </div>
         </div>
       </div>
